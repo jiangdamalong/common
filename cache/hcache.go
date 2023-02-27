@@ -31,17 +31,17 @@ const (
 
 type CacheNodeIf interface{}
 
-//可拷贝节点，用于read接口
+// 可拷贝节点，用于read接口
 type CopyableNode interface {
 	CopyNode() (CacheNodeIf, error)
 }
 
-//事件节点，用于HandleEvet
+// 事件节点，用于HandleEvet
 type EventNode interface {
 	HandleEvent(en interface{}) (int, int)
 }
 
-//redis存储节点，用于redis存储，设置dao的情况下，会存储到redis中
+// redis存储节点，用于redis存储，设置dao的情况下，会存储到redis中
 type RedisNode interface {
 	Marshal() []byte
 	Unmarshal(val []byte) error
@@ -108,9 +108,9 @@ func (cg *HCacheGroup) Init(cfg string, umf UnmarshalFunc) error {
 	return nil
 }
 
-//内存cache，
-//num:组数
-//memExpire:超时时长
+// 内存cache，
+// num:组数
+// memExpire:超时时长
 func (cg *HCacheGroup) InitMem(num int, memExpire int64) error {
 	cg.groupSize = num
 	cg.cache = make([]HCache, cg.groupSize)
@@ -251,7 +251,7 @@ func (c *HCache) load(key string) (int, error) {
 	return ct, nil
 }
 
-//遍历访问所有hash节点
+// 遍历访问所有hash节点
 func (c *HCache) WalkNode(key string, f interface{}, v ...interface{}) error {
 	c.RLock()
 	defer c.RUnlock()
@@ -602,7 +602,7 @@ func (c *HCache) add(key string, hkey string, tb CacheNodeIf) error {
 	return nil
 }
 
-//针对uid名下所有任务，处理事件
+// 针对uid名下所有任务，处理事件
 func (c *HCache) HandleEvent(key string, hkey string, en interface{}) error {
 	c.RLock()
 	defer c.RUnlock()
@@ -655,7 +655,7 @@ func (c *HCache) HandleEvent(key string, hkey string, en interface{}) error {
 	return nil
 }
 
-//从尾部向头部遍历，以支持lru cache
+// 从尾部向头部遍历，以支持lru cache
 func (c *HCache) timerHandler() {
 	e := c.keyList.Back()
 	i := 0
