@@ -1,7 +1,6 @@
-
 module github.com/jiangdamalong/common
 
-go 1.17
+go 1.19
 
 require (
 	github.com/coreos/etcd v3.3.22+incompatible
@@ -47,4 +46,3 @@ replace (
 	github.com/coreos/bbolt => go.etcd.io/bbolt v1.3.4
 	google.golang.org/grpc => google.golang.org/grpc v1.20.1
 )
-

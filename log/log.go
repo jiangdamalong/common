@@ -2,11 +2,11 @@ package log
 
 import (
 	"bufio"
-	"common"
 	"fmt"
+	"github.com/jiangdamalong/common"
+	"github.com/jiangdamalong/common/pool"
 	"os"
 	"path"
-	"pool"
 	"reflect"
 	"runtime"
 	"runtime/debug"
